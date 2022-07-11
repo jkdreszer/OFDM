@@ -5,25 +5,25 @@ pi = np.pi
 # PARAMETERS
 TIME_VECTOR_SIZE = 30
 TX_AMP = 1.5
-REF_RX_DEV = pi/4 # deviation od receiver refertence frequency
+REF_RX_DEV = pi/8 # deviation od receiver refertence frequency
 
 # CALCULATION
 t = np.linspace(0, 2*pi,TIME_VECTOR_SIZE, endpoint=False)
 
-Carrier = ...
-Tx = ...
+Carrier = np.sin(t)
+Tx = TX_AMP * Carrier
 
 Rx = Tx # Ideal channel
 
-Ref = ...
-Rx_dot_Ref  = ...
+Ref = np.sin(t+REF_RX_DEV)
+Rx_dot_Ref  = np.dot(Rx, Ref)
 RxAmpl = 2*(Rx_dot_Ref/TIME_VECTOR_SIZE) # normalisation
 
 Error = 100 * (TX_AMP - RxAmpl)/TX_AMP
 
 # PRESENTATION
 plt.plot(t, Rx,    '-' , label='Rx  (Carrier)',     color='blue')
-plt.plot(t, RefRx, '--', label='RefRx',color='green')
+plt.plot(t, Ref, '--', label='RefRx',color='green')
 plt.ylim(-3.1, 3.1)
 plt.legend()
 plt.grid()

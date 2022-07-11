@@ -5,7 +5,7 @@ pi = np.pi
 # PARAMS
 TIME_VECTOR_SIZE = 30
 
-AMP_A = 1
+AMP_A = 2
 AMP_B = 2
 
 # CALCULATIONS

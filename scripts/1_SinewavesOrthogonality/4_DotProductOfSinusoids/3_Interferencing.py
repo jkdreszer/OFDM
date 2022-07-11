@@ -4,9 +4,9 @@ pi = np.pi
 
 # PARAMETERS
 TIME_VECTOR_SIZE = 30
-CARRIER_TX_AMP = 2
-INTERFER_SHIFT = pi/4
-INTERFER_AMP = 1.5
+CARRIER_TX_AMP = 1
+INTERFER_SHIFT = pi/2 + pi/8
+INTERFER_AMP = 2
 
 # CALCULATION
 t = np.linspace(0, 2*pi,TIME_VECTOR_SIZE, endpoint=False)
@@ -14,10 +14,10 @@ t = np.linspace(0, 2*pi,TIME_VECTOR_SIZE, endpoint=False)
 Carrier  = CARRIER_TX_AMP * np.sin(t) 
 Interfer = INTERFER_AMP * np.sin(t+INTERFER_SHIFT)
 
-Rx       = ...
-Rx_mul_Sin = ...
-Rx_dot_Sin  = ...
-CarrierRxAmpl = ...
+Rx = Carrier + Interfer
+Rx_mul_Sin = Rx * np.sin(t) 
+Rx_dot_Sin = sum(Rx_mul_Sin)
+CarrierRxAmpl = Rx_dot_Sin * 2 / TIME_VECTOR_SIZE / 1
 
 # PRESENTATION
 plt.plot(t,Carrier,  '-' , label='Carrier',     color='blue')
