@@ -6,8 +6,8 @@ from mapper_lib import symbol_to_ampl, ampl_to_symbol
 TIME_VECTOR_SIZE = 60
 TRANSMISIONS_NR = 10
 
-NOISE_DEVIATION = 2.0
-SYMBOL_NR = 4
+NOISE_DEVIATION = 0.3
+SYMBOL_NR = 8
 
 t = np.linspace(0, 2*np.pi,TIME_VECTOR_SIZE, endpoint=False)
 Carrier = np.sin(t) 
@@ -16,15 +16,19 @@ Ref     = Carrier
 # TRANSMISION-RECEPTION
 symbols_tx = np.random.randint(0,SYMBOL_NR,TRANSMISIONS_NR)    
 symbols_rx = list()
-for symbol in symbols_tx:        
+for symbol in symbols_tx:   
+     
     # modulation
-    ampl = ...
-    Tx = ampl*Carrier        
+    ampl = symbol_to_ampl(SYMBOL_NR, symbol)
+    Tx = ampl*Carrier  
+     
     # real channel
-    Rx = Tx + ...   
+    noise = np.random.normal(0, NOISE_DEVIATION, TIME_VECTOR_SIZE)
+    Rx = Tx + noise
+    
     # demodulation
     ampl = (np.dot(Rx,Ref)/TIME_VECTOR_SIZE)*2  
-    symbol = ...
+    symbol = ampl_to_symbol(SYMBOL_NR, ampl)
     
     symbols_rx.append(symbol)
 

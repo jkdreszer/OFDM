@@ -23,7 +23,8 @@ for ampl_sin, ampl_cos in zip(AMPL_VECTOR_SIN, AMPL_VECTOR_COS):
     Tx = (ampl_sin*carrier_sin) + (ampl_cos*carrier_cos)     
     
     # real channel
-    Rx = Tx ...
+    noise = np.random.normal(0, 2, TIME_VECTOR_SIZE)
+    Rx = Tx + noise
         
     # demodulation
     ampl = (np.dot(Rx,ref_sin)/TIME_VECTOR_SIZE)*2  
@@ -36,7 +37,10 @@ for ampl_sin, ampl_cos in zip(AMPL_VECTOR_SIN, AMPL_VECTOR_COS):
 
 # PRESENTATION  
 # Rx plot
-...
+plt.plot(Rx, '-')
+plt.axhline(y=0, color="black")
+plt.grid(axis='y')
+plt.show()
 
 # amplitudes
 amplitudes_sin = np.array(amplitudes_sin) # convert list to numpy 1D array
@@ -44,10 +48,9 @@ amplitudes_cos = np.array(amplitudes_cos) # ...
 np.set_printoptions(precision=2)          # set numpy array print precision
 
 print(f'amplitudes_sin = {amplitudes_sin}')
-errors = ...
-print(...)
+errors = AMPL_VECTOR_SIN - amplitudes_sin
+print(f"errors sin: {errors}\n")
 
-print()
-
-...
-
+print(f'amplitudes_cos = {amplitudes_cos}')
+errors = AMPL_VECTOR_COS - amplitudes_cos
+print(f"errors cos: {errors}")

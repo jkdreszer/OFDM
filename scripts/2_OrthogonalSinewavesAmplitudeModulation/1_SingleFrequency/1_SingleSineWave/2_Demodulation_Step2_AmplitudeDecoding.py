@@ -18,17 +18,20 @@ plt.show()
 RxPeriods = np.reshape(Rx,(5,60))
 
 # rx time slots plot and decoding
+periodNmb = 0
 for RxPeriod in RxPeriods:
     plt.plot(RxPeriod)
-    plt.ylim(-2,2)
-    plt.grid()    
+    plt.title(label= "period {}".format(periodNmb))
+    plt.ylim(-2.25, 2.25)
+    plt.grid()
     plt.show()
+    periodNmb+=1
     
     t = np.linspace(0, 2*pi,PERIOD_VECTOR_SIZE, endpoint=False)
-    Ref  = ...     
-    dot  = ...
-    ampl = ...      
-    print(...)
+    Ref  = np.sin(t)
+    dot  = np.dot(RxPeriod, Ref)
+    ampl = dot * 2 / PERIOD_VECTOR_SIZE      
+    print(f"ampl = {ampl}")
     
 
 

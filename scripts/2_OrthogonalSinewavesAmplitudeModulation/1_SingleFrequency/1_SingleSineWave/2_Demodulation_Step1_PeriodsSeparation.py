@@ -16,11 +16,16 @@ plt.show()
 # spliting vector into time slots coresponding to single periods
 RxPeriods = np.reshape(Rx,(PERIOD_NUMBER,PERIOD_VECTOR_SIZE))
 
+
 # plotting periods one by one
+periodNmb = 0
 for RxPeriod in RxPeriods:
-    plt.plot(...)
-    ...
-    ...
+    plt.plot(RxPeriod)
+    plt.title(label= "period {}".format(periodNmb))
+    plt.ylim(-2.25, 2.25)
+    plt.grid()
+    plt.show()
+    periodNmb+=1
     
     
 

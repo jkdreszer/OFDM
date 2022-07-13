@@ -12,8 +12,8 @@ t = np.linspace(0, 2*pi,TIME_VECTOR_SIZE, endpoint=False)
 
 Tx = np.zeros(len(t))
 for i, amp in enumerate(AMPL_VECTOR):
-    f = ...
-    Tx += ...
+    f = (i + 1) * 1.5 
+    Tx += amp * np.sin(f * t)
 
 # PRESENTATION
 plt.plot(Tx)

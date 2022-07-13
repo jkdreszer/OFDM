@@ -20,16 +20,18 @@ amplitudes_cos = list()
 for ampl_sin, ampl_cos in zip(AMPL_VECTOR_SIN, AMPL_VECTOR_COS):
     
     # modulation
-    Tx =  ...   
+    Tx =  (carrier_sin*ampl_sin) + (carrier_cos*ampl_cos) 
     
     # channel
-    Rx = ... # ideal
+    Rx = Tx # ideal
         
     # demodulation
-    ampl = ...
+    dot = np.dot(Rx, ref_sin)
+    ampl = dot * 2 / TIME_VECTOR_SIZE
     amplitudes_sin.append(ampl)
     
-    ampl = ...
+    dot = np.dot(Rx, ref_cos)
+    ampl = dot * 2 / TIME_VECTOR_SIZE
     amplitudes_cos.append(ampl)
 
 # PRESENTATION

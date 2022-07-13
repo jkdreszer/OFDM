@@ -11,13 +11,13 @@ AMPL_VECTOR_COS = (-1.5,  1.0,   0.5)
 # CALCULATION
 t = np.linspace(0, 2*pi,TIME_VECTOR_SIZE, endpoint=False)
 
-carrier_sin = ...
-carrier_cos = ...
+carrier_sin = np.sin(t)
+carrier_cos = np.cos(t)
 
 Tx = np.array([]) #empty time vector
 for ampl_sin, ampl_cos in zip(AMPL_VECTOR_SIN, AMPL_VECTOR_COS):    
-    TxSinglePeriod = (...*...) + (...*...)
-    Tx = np.append(Tx,...)
+    TxSinglePeriod = (carrier_sin*ampl_sin) + (carrier_cos*ampl_cos)
+    Tx = np.append(Tx, TxSinglePeriod)
 
 # PRESENTATION
 plt.plot(Tx)

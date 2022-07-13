@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mapper_lib import symbol_to_ampl
 
-SYMBOL_NR = 4
+SYMBOL_NR = 8
 
 symbols_l = range(SYMBOL_NR)
 ampl_l = list()

@@ -18,16 +18,17 @@ plt.show()
 RxPeriods = np.reshape(Rx,(5,60))
 
 # decoding amplitudes of Rx time slots
-amplitudes_l = list()
+
+amplitudes = [] # create amplitude list
+t = np.linspace(0, 2*pi,PERIOD_VECTOR_SIZE, endpoint=False)
+Ref = np.sin(t)
+
+
 for RxPeriod in RxPeriods:
-    t = np.linspace(0, 2*pi,PERIOD_VECTOR_SIZE, endpoint=False)
-    Ref = np.sin(t)     
-    dot = np.dot(RxPeriod,Ref)
-    ampl = (dot/PERIOD_VECTOR_SIZE)*2  
-    amplitudes_l.append(ampl)
+    dot  = np.dot(RxPeriod, Ref) 
+    ampl = dot * 2 / PERIOD_VECTOR_SIZE #decode amplitude
     
-print(amplitudes_l)
+    amplitudes.append(ampl) #add amplitude to list
     
-
-
-
+print(amplitudes)  # print list
+    

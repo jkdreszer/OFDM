@@ -19,13 +19,44 @@ RxPeriods = np.reshape(Rx,(5,60))
 
 # decoding amplitudes of Rx time slots
 
-... # create amplitude list
+amplitudes = [] # create amplitude list
+t = np.linspace(0, 2*pi,PERIOD_VECTOR_SIZE, endpoint=False)
+Ref = np.sin(t)
+
+
 for RxPeriod in RxPeriods:
-    ... # decode amplitude
-    ... # append amplitude to list
+    dot  = np.dot(RxPeriod, Ref) 
+    ampl = dot * 2 / PERIOD_VECTOR_SIZE #decode amplitude
     
-print(...)  # print list
+    amplitudes.append(ampl) #add amplitude to list
+    
+print(amplitudes)  # print list
     
 
+#------------Same for TxSignal_Exercise.npy--------------------
+
+# loading Rx vector from file and..
+Rx = np.load('TxSignal_Exercise.npy')
+
+# .. ploting it
+plt.plot(Rx)
+plt.grid()
+plt.show()
+
+# spliting vector into time slots coresponding to single periods
+RxPeriods = np.reshape(Rx,(5,60))
+
+# decoding amplitudes of Rx time slots
+
+amplitudes = [] # create amplitude list
+t = np.linspace(0, 2*pi,PERIOD_VECTOR_SIZE, endpoint=False)
+Ref = np.sin(t)
 
 
+for RxPeriod in RxPeriods:
+    dot  = np.dot(RxPeriod, Ref) 
+    ampl = dot * 2 / PERIOD_VECTOR_SIZE #decode amplitude
+    
+    amplitudes.append(ampl) #add amplitude to list
+    
+print(amplitudes)  # print list
